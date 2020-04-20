@@ -4,25 +4,10 @@ global $conn;
 $completedPoll = false;
 $errors = "";
 
-if (empty($_POST)) {
-  //  display regular version of page because they haven't submitted form yet
-} else if (
-  !empty($_POST['concerns']) && !empty($_POST['earthquake']) && !empty($_POST['pandemic']) && !empty($_POST['outlook'])
-) {
-  // all fields have been filled out so  display graphs
-  $completedPoll = true;
-  
 
-  $concerns = $_POST['concerns'];
-  $concernStr = implode(',', $concerns);
+## Functions (normally I would have this in a separate file but for the assignment requirements it's all in this file)
 
-  $earthquakeResponse = $_POST['earthquake'];
-  $eqStr = implode(',',$earthquakeResponse);
 
-  $pandemicResponse = $_POST['pandemic'];
-  $outlook = $_POST['outlook'];
-
-  // insert data into db
 /*   function insertResponses($conn, $concerns, $eq, $pan, $out) {
   
     $insertResponses = mysqli_query($conn, "INSERT INTO web_poll (concerns, eq, pandemic, outlook) VALUES ('$concerns', '$eq', '$pan', '$out')");
@@ -87,7 +72,32 @@ if (empty($_POST)) {
   }
 
   return $outResp;
- } */
+ }
+ 
+ 
+ */
+
+ ##### POST FORM #####
+if (empty($_POST)) {
+  //  display regular version of page because they haven't submitted form yet
+} else if (
+  !empty($_POST['concerns']) && !empty($_POST['earthquake']) && !empty($_POST['pandemic']) && !empty($_POST['outlook'])
+) {
+  // all fields have been filled out so  display graphs
+  $completedPoll = true;
+  
+
+  $concerns = $_POST['concerns'];
+  $concernStr = implode(',', $concerns);
+
+  $earthquakeResponse = $_POST['earthquake'];
+  $eqStr = implode(',',$earthquakeResponse);
+
+  $pandemicResponse = $_POST['pandemic'];
+  $outlook = $_POST['outlook'];
+
+
+ 
   // set variables for charts
 
 
