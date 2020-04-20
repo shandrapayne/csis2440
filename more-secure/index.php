@@ -152,7 +152,8 @@ function getErrors($err)
 
           <div class="confirmation">
             <?php echo $access; ?>
-
+            <h3>You are now logged in! </h3>
+            <!-- you are now logged in --->
           </div><!-- end of confirmation -->
         <?php } ?>
       </div>

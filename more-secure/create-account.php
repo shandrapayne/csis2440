@@ -1,12 +1,16 @@
 <?php
 include_once('includes/dbconnect.php');
 
+## vars
+$errorsExist = false;
+
 ### Functions ###
 
 // query database to see if user already exists
-function doesUserExist($conn, $usr) {
-    $existence = false;
-    $sql = "SELECT * FROM accounts";
+function uniqueUsername($usr) {
+    global $conn;
+    $isUnique = true;
+    $sql = "SELECT * FROM users";
     $result = $conn->query($sql);
     $credentials = array();
     while($row = $result->fetch_assoc()) {
@@ -20,43 +24,61 @@ function doesUserExist($conn, $usr) {
 
     foreach($existingUsers as $eu) {
     if($usr == $eu) {
-        $existence = true;
+        $isUnique = false;
     }
 
-    return $existence;
+    return $isUnique;
     }
+}
+
+// check the secret code 
+function codeValid($code) {
+ global $conn;
+  $validCode = false;
+  $sql = "SELECT * FROM code";
+    $result = $conn->query($sql);
+    // does code match?
+    if($code == $result) {
+        $validCode = true;
+    }
+
+    return $validCode;
 }
 
 // hash & salt password
 function encryptPass($pwd)
 {
-    $hash_default_salt = password_hash(
+    $pwdHash = password_hash(
         $pwd,
-        PASSWORD_DEFAULT
+        PASSWORD_BCRYPT
     );
+    return $pwdHash;
 
-    $hash_variable_salt = password_hash(
-        $pwd,
-        PASSWORD_DEFAULT,
-        array('cost' => 9)
-    );
-
-    $verified = password_verify(
-        $pwd,
-        $hash_default_salt
-    );
-
-    return $verified;
 }
 
 // insert into db if user doesn't exist yet & no errors
-function createAccount($usr, $pwd, $code, $verified, $uniqUser) {
-    
+function createAccount($usr, $passHash) {
+    global $conn;
+    $createAccount = mysqli_query($conn, "INSERT INTO accounts (username, pwd) VALUES ('$usr', '$passHash')");
+  
+    return $createAccount;
     
 }
 
 // error handling
+function errorHandling($validCode, $uniqUser) {
+    $error = "Error: ";
 
+    if($validCode != true) {
+        $error .= "\n The code you entered is incorrect!";
+    }
+
+    if($uniqUser != true) {
+        $error .= "\n The username you entered already exists. Please create a new one.";
+    }
+   
+    return $error;
+}
 
 
 
@@ -68,13 +90,23 @@ if (empty($_POST)) {
     $completedForm = true;
 
     $username = $_POST['username'];
-    $password = $_POST['pass'];
-    $code = $_POST['code'];
+    $isUniqueUser = uniqueUsername($username);
 
-    // check for existing & if not: insert into database
+    $password = $_POST['pass'];
+    $hashedP = encryptPass($password);
+
+    $code = $_POST['code'];
+    $codeValid = codeValid($code);
+
+    // if username unique and code valid : insert into database
+    if(($isUniqueUser == true) && ($codeValid == true)) {
+        $accountCreated = createAccount($username, $hashedP);
+    } else {
+        $getErrors = errorHandling($isUniqueUser, $codeValid);
+    }
 
 } else {
-    $errors = true;
+    $errorsExist = true;
     // show errors
 }
 
@@ -95,6 +127,7 @@ if (empty($_POST)) {
         <h1>Create Account</h1>
     </div>
     <div class="container">
+        <div class="create-account-form">
         <form>
             <div class="form-row">
                 <div class="form-group">
@@ -112,7 +145,6 @@ if (empty($_POST)) {
                     <input type="password" class="form-control" id="verify-pass" placeholder="Password">
                 </div>
             </div>
-    </div>
     <div class="form-row">
         <div class="form-group">
             <label for="secret-code">Secret Code</label>
@@ -126,6 +158,14 @@ if (empty($_POST)) {
         </div>
     </div>
     </form>
+</div><!-- end of create-account-form-div -->
+
+<div class="account-created"> <!-- account created succesfully -->
+
+   <h3>Your account has been succesfully created. You may now <a href="index.php">login</a></h3>
+
+
+</div>
 
     </div>
 </body>
