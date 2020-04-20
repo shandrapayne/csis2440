@@ -1,0 +1,30 @@
+.denied {
+    text-align: center;
+    color: red;
+    padding: 10px;
+    font-size: 20px;
+    font-style: bold;
+    background-color: grey;
+}
+
+.err-message {
+    color: red;
+
+}
+
+.info {
+    background-color: lemonchiffon;
+}
+
+.granted {
+    text-align: center;
+    padding: 10px;
+    background-color: green;
+    color: white;
+    font-size: 16px;
+    font-style: bold;
+}
+
+.hidden {
+    display: none;
+}

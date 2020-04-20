@@ -1,0 +1,47 @@
+#header {
+  text-align: center;
+  border-bottom: 5px solid black;
+  padding: 5px;
+  margin-bottom: 15px;
+}
+
+.price {
+  color: #007bff;
+  float: left;
+  padding-top: 10px;
+  padding-left: 80px;
+  font-size: 30px;
+  font-style: bold;
+}
+
+.error-message {
+  text-align: center;
+}
+
+.back-link{
+  float: left;
+  padding-left: 10px;
+}
+
+.products-link {
+  float: right;
+  padding-right: 10px;
+}
+
+.left-jumbotron {
+  float: left;
+  padding-bottom: 30px;
+  margin-right: 120px;
+}
+
+.right-jumbotron {
+  float: clear;
+  padding-bottom: 30px;
+}
+
+.error-message {
+  width: 300px;
+  background-color:#f5eeb3;
+  text-align: left;
+  padding-left: 5px;
+}

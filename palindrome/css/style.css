@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css?family=Indie+Flower&display=swap');
+
+h1 {
+  margin: 0;
+  font-size: 30px;
+  text-align: center;
+}
+
+h1, p, li {
+  font-family: 'Indie Flower', cursive;
+}
+
+h1.main-heading a {
+  text-decoration: none; 
+  color: black;
+}
+
+h1.main-heading a:hover {
+  color: rgba(75, 75, 75, .5);
+}
+
+.true {
+  background-color:#38B751;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.false {
+  background-color: #B7B7AF;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.wrapper {
+  display: flex;
+  overflow: hidden;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.facts {
+  border: 2px solid #BB33FF;
+  padding: 5px;
+  margin: 5px;
+  flex-basis: 45%;
+}
+
+.form-wrapper {
+  width: 400px;
+  margin: 20px auto;
+}
+
+form, input {
+  margin: 0;
+  padding: 0;
+  display: block;
+  box-sizing: border-box;
+}
+
+input {
+  width: 100%;
+  padding: 8px;
+  font-size: 25px;
+}
+
+input[type="text"] {
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+}
+
+input[type="submit"], input[type="reset"] {
+  width: 49%;
+  display: inline-block;
+  font-size: 20px;
+  color: white;
+  font-style: bold;
+  border-radius: 5px;
+}
+
+input[type="submit"] {
+  float: right;
+  background-color: #BB33FF;
+}
+
+input[type="reset"] {
+  background-color: #FF3377;
+}
+
+select #palindrome-option {
+  float: clear;
+  margin: 0 0 10px 0;
+}
+
+.spacer {
+  height: 10px;
+  padding: 5px;
+}
+
+nav {
+  position: sticky;
+}
+nav ul {
+  background-color: #21CDF0;
+  margin: 0;
+  padding: 0;
+
+}
+nav ul li, nav ul li a { 
+  display: inline-block;
+}
+
+nav ul li a {
+ padding: 10px;
+ text-decoration: none;
+ color: #BB33FF;
+ text-transform: capitalize;
+}
+
+nav ul li a.active {
+  background-color: #BB33FF;
+  color: #21CDF0;
+
+}
