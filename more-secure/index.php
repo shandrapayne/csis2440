@@ -35,7 +35,7 @@ function getUserPassPair()
   foreach ($credentials as $cred) 
      { 
         $usr = $cred['username'];
-        $pwd = $cred['password'];
+        $pwd = $cred['pwd'];
         $item = array(
           'username' => $usr,
           'password' => $pwd
@@ -53,17 +53,25 @@ function checkCredentials($username, $password, $credentialsArr)
 {
   $username = $_POST['username'];
   $password = $_POST['password'];
+
   $validity = false;
   $err = 0;
 
   foreach ($credentialsArr as $credential) {
-    if ($credential['username'] == $username && $credential['password'] == $password) {
+    $pwdHash = $credential['password'];
+    $verifiedPass = false;
+
+    if(password_verify($password, $pwdHash)) {
+     $verifiedPass = true;
+    }
+
+    if($credential['username'] == $username && $verifiedPass == true){
       $validity = true;
     }
-    if ($credential['username'] == $username && $credential['password'] != $password) {
+    if ($credential['username'] == $username && $verifiedPass != true) {
       $err = 1;
     }
-    if ($credential['username'] != $username && $credential['password'] == $password) {
+    if ($credential['username'] != $username && $verifiedPass == true) {
       $err = 2;
     }
   }
@@ -135,6 +143,7 @@ function getErrors($err)
             </div>
           </div>
         </form>
+        <p>Don't have an account yet? <a href="create-account.php">Create a new account</a></p>
 
         </div> <!-- end of login form -->
         <?php if ($emptyFields || $errMess) { ?>
@@ -152,7 +161,7 @@ function getErrors($err)
 
           <div class="confirmation">
             <?php echo $access; ?>
-            <h3>You are now logged in! </h3>
+        
             <!-- you are now logged in --->
           </div><!-- end of confirmation -->
         <?php } ?>

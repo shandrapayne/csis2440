@@ -35,7 +35,7 @@ function uniqueUsername($usr) {
 function codeValid($code) {
  global $conn;
   $validCode = false;
-  $sql = "SELECT * FROM code";
+  $sql = "SELECT phrase FROM code";
     $result = $conn->query($sql);
     // does code match?
     if($code == $result) {
@@ -74,7 +74,7 @@ function errorHandling($validCode, $uniqUser) {
     }
 
     if($uniqUser != true) {
-        $error .= "\n The username you entered already exists. Please create a new one.";
+        $error .= "\n The username you entered already exists. Please come up with something original.";
     }
    
     return $error;
@@ -132,7 +132,7 @@ if (empty($_POST)) {
             <div class="form-row">
                 <div class="form-group">
                     <label for="username">Username</label>
-                    <input type="text" class="form-control" id="username" name="username" placeholder="Email">
+                    <input type="text" class="form-control" id="username" name="username" placeholder="Username">
                 </div>
             </div>
             <div class="form-row">
@@ -160,7 +160,7 @@ if (empty($_POST)) {
     </form>
 </div><!-- end of create-account-form-div -->
 
-<div class="account-created"> <!-- account created succesfully -->
+<div class="account-created"> <!-- account created succesfully (only show after account created) -->
 
    <h3>Your account has been succesfully created. You may now <a href="index.php">login</a></h3>
 
