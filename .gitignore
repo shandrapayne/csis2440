@@ -9,3 +9,5 @@ dbconnect.php
 
 # ignore vscode
 .vscode/
+
+/vendor/
