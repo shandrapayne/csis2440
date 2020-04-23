@@ -37,7 +37,7 @@ if ($WEBSITE_ENVIRONMENT =="Development") {
 
 
 // connect to the database server
-$conn = new mysqli($host, $user, $password) or die("Could not connect to database");
+$conn = new mysqli($host, $user, $password, $database) or die("Could not connect to database");
 
 if ($mysqli -> connect_errno) {
   echo "Failed to connect to MySQL: " . $mysqli -> connect_error;

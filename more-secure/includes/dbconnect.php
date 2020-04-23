@@ -29,14 +29,14 @@ if ($WEBSITE_ENVIRONMENT =="Development") {
 
  
   define("APP_ENVIRONMENT", "Production");
-	define("APP_BASE_URL", "http://aqueous-oasis-06069.herokuapp.com/more-secure");
+	define("APP_BASE_URL", "http://aqueous-oasis-06069.herokuapp.com");
 	#error_reporting(0); // turn OFF showing errors
 	error_reporting(E_ALL ^ E_NOTICE); // turn ON showing errors			
 
 }
 
 // connect to the database server
-$conn = new mysqli($host, $user, $password) or die("Could not connect to database");
+$conn = new mysqli($host, $user, $password, $database) or die("Could not connect to database");
 
 if ($mysqli -> connect_errno) {
   echo "Failed to connect to MySQL: " . $mysqli -> connect_error;
