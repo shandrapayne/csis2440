@@ -9,10 +9,7 @@ include_once('includes/dbconnect.php');
 function uniqueUsername($usr)
 {
     global $conn;
-    if (mysqli_connect_errno()) {
-        printf("Connect failed: %s\n", mysqli_connect_error());
-        exit;
-      }
+   
       $isUnique = true;
 
     $sql = "SELECT * FROM users";
@@ -73,8 +70,9 @@ function encryptPass($pwd)
 function createAccount($usr, $passHash)
 {
     global $conn;
+    $id = uniqid();
     $accountCreated = false;
-    $sql = "INSERT INTO users (username, pwd) VALUES ('$usr', '$passHash')";
+    $sql = "INSERT INTO users (id, username, pwd) VALUES ('$id', '$usr', '$passHash')";
     if ($conn->query($sql) === true) {
         $accountCreated = true;
     } else {
