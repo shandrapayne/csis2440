@@ -35,7 +35,7 @@ function getUserPassPair()
   foreach ($credentials as $cred) 
      { 
         $usr = $cred['username'];
-        $pwd = $cred['password'];
+        $pwd = $cred['pwd'];
         $item = array(
           'username' => $usr,
           'password' => $pwd
