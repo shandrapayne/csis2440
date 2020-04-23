@@ -38,7 +38,7 @@ function getUserPassPair()
         $pwd = $cred['pwd'];
         $item = array(
           'username' => $usr,
-          'password' => $pwd
+          'pwd' => $pwd
         );
         $userPassPairArr[] = $item;
      }
@@ -57,13 +57,13 @@ function checkCredentials($username, $password, $credentialsArr)
   $err = 0;
 
   foreach ($credentialsArr as $credential) {
-    if ($credential['username'] == $username && $credential['password'] == $password) {
+    if ($credential['username'] == $username && $credential['pwd'] == $password) {
       $validity = true;
     }
-    if ($credential['username'] == $username && $credential['password'] != $password) {
+    if ($credential['username'] == $username && $credential['pwd'] != $password) {
       $err = 1;
     }
-    if ($credential['username'] != $username && $credential['password'] == $password) {
+    if ($credential['username'] != $username && $credential['pwd'] == $password) {
       $err = 2;
     }
   }
