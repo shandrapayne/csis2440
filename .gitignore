@@ -1,12 +1,6 @@
 # ignore imgs
 img/
 
-# ignore dbconnect files
-# dbconnect.php
-
-# env variables
-.env
-
 # ignore vscode
 .vscode/
 
