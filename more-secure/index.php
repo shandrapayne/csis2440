@@ -82,7 +82,7 @@ function checkCredentials($username, $password, $credentialsArr)
 function accessCheck($valid)
 {
   if ($valid == true) {
-    $confirm = '<p class="granted">Access Granted!</p>';
+    $confirm = '<p class="granted">You are now logged in!</p>';
   } else {
     $confirm = '<p class="denied">Access Denied!</p>';
   }
