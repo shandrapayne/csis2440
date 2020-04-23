@@ -2,7 +2,7 @@
 img/
 
 # ignore dbconnect files
-dbconnect.php
+# dbconnect.php
 
 # env variables
 .env
